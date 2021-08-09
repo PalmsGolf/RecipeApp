@@ -1,4 +1,4 @@
-package mike.springstart.recipeapp.recipeapp;
+package mike.springstart.recipeapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,5 +9,4 @@ class RecipeAppApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
