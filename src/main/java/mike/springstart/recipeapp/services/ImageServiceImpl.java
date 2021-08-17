@@ -18,6 +18,7 @@ public class ImageServiceImpl implements ImageService {
         this.recipeRepository = recipeService;
     }
 
+    // як влн мпляться на  crud
     @Override
     @Transactional
     public void saveImageFile(Long recipeId, MultipartFile file) {
