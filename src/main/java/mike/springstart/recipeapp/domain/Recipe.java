@@ -39,10 +39,7 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
-    @ManyToMany
-    @JoinTable(name = "recipe_category",
-        joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Category> categories = new HashSet<>();
 
     public void setNotes(Notes notes) {

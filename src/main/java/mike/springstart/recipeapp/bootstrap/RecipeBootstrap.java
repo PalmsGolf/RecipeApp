@@ -80,20 +80,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         UnitOfMeasure pintUom = dashUomOptional.get();
         UnitOfMeasure cupsUom = cupsUomOptional.get();
 
-        Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
-
-        if (!americanCategoryOptional.isPresent()) {
-            throw new RuntimeException("Expected Category Not Found");
-        }
-
-        Optional<Category> mexicanCategoryOptional = categoryRepository.findByDescription("Mexican");
-
-        if (!mexicanCategoryOptional.isPresent()) {
-            throw new RuntimeException("Expected Category Not Found");
-        }
-
-        Category americanCategory = americanCategoryOptional.get();
-        Category mexicanCategory = mexicanCategoryOptional.get();
+        Category americanCategory = new Category("american");
+        Category mexicanCategory = new Category("mexican");
 
         Recipe guacRecipe = new Recipe();
         guacRecipe.setDescription("Perfect Guacamole");
@@ -199,6 +187,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         tacosRecipe.setServings(4);
         tacosRecipe.setSource("Simply Recipes");
+
+        americanCategory.setRecipe(tacosRecipe);
+        mexicanCategory.setRecipe(guacRecipe);
 
         recipes.add(tacosRecipe);
         return recipes;

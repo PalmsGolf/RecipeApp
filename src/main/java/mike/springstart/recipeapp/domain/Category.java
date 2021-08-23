@@ -1,16 +1,14 @@
 package mike.springstart.recipeapp.domain;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"recipes"})
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Category {
     @Id
@@ -19,7 +17,13 @@ public class Category {
 
     private String description;
 
-    //problems of it
-    @ManyToMany(mappedBy = "categories")
-    private Set<Recipe> recipes;
+    @ManyToOne
+    private Recipe recipe;
+
+    public Category() {
+    }
+
+    public Category(String description) {
+        this.description = description;
+    }
 }
