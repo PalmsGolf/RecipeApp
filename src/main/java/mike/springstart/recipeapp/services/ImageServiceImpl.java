@@ -18,10 +18,9 @@ public class ImageServiceImpl implements ImageService {
         this.recipeRepository = recipeService;
     }
 
-    // як влн мпляться на  crud
     @Override
     @Transactional
-    public void saveImageFile(Long recipeId, MultipartFile file) {
+    public void saveImageFile(String recipeId, MultipartFile file) {
         try {
             Recipe recipe = recipeRepository.findById(recipeId).get();
             Byte[] imageBlob = new Byte[file.getBytes().length];

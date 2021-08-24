@@ -1,23 +1,20 @@
 package mike.springstart.recipeapp.domain;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"recipe"})
-@Entity
+@Document
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private String id;
     private String description;
 
-    @ManyToOne
+    @DBRef
     private Recipe recipe;
 
     public Category() {
