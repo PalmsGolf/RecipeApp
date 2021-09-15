@@ -58,8 +58,6 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
         if(!recipeOptional.isPresent()){
-
-            //todo toss error if not found!
             log.error("Recipe not found for id: " + command.getRecipeId());
             return new IngredientCommand();
         } else {
@@ -89,9 +87,7 @@ public class IngredientServiceImpl implements IngredientService {
 
             Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream().findFirst();
 
-            //check by description
             if(!savedIngredientOptional.isPresent()){
-                //not totally safe... But best guess
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(recipeIngredients -> recipeIngredients.getDescription().equals(command.getDescription()))
                         .filter(recipeIngredients -> recipeIngredients.getAmount().equals(command.getAmount()))
@@ -99,14 +95,12 @@ public class IngredientServiceImpl implements IngredientService {
                         .findFirst();
             }
 
-            //to do check for fail
             return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
         }
     }
 
     @Override
     public void deleteById(Long recipeId, Long idToDelete) {
-
         log.debug("Deleting ingredient: " + recipeId + ":" + idToDelete);
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);

@@ -1,10 +1,10 @@
 package mike.springstart.recipeapp.converters;
 
-import org.springframework.lang.Nullable;
 import lombok.Synchronized;
 import mike.springstart.recipeapp.comands.UnitOfMeasureCommand;
 import mike.springstart.recipeapp.domain.UnitOfMeasure;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,13 +14,14 @@ public class UnitOfMeasureToUnitOfMeasureCommand implements Converter<UnitOfMeas
     @Nullable
     @Override
     public UnitOfMeasureCommand convert(UnitOfMeasure unitOfMeasure) {
-
-        if (unitOfMeasure != null) {
-            final UnitOfMeasureCommand uomc = new UnitOfMeasureCommand();
-            uomc.setId(unitOfMeasure.getId());
-            uomc.setDescription(unitOfMeasure.getDescription());
-            return uomc;
+        if (unitOfMeasure == null) {
+            return null;
         }
-        return null;
+
+        final UnitOfMeasureCommand uomc = new UnitOfMeasureCommand();
+        uomc.setId(unitOfMeasure.getId());
+        uomc.setDescription(unitOfMeasure.getDescription());
+        return uomc;
+
     }
 }

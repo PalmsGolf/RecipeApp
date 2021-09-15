@@ -62,12 +62,10 @@ public class IngredientController {
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
         //TODO: raise exception if null
 
-        //need to return back parent id for hidden form property
         IngredientCommand ingredientCommand = new IngredientCommand();
         ingredientCommand.setRecipeId(Long.valueOf(recipeId));
         model.addAttribute("ingredient", ingredientCommand);
 
-        //init uom
         ingredientCommand.setUom(new UnitOfMeasureCommand());
 
         model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());

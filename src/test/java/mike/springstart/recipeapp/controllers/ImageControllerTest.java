@@ -44,13 +44,11 @@ public class ImageControllerTest {
 
     @Test
     public void getImageForm() throws Exception {
-        //given
         RecipeCommand command = new RecipeCommand();
         command.setId(1L);
 
         when(recipeService.findCommandById(anyLong())).thenReturn(command);
 
-        //when
         mockMvc.perform(get("/recipe/1/image"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("recipe"));
@@ -75,8 +73,6 @@ public class ImageControllerTest {
 
     @Test
     public void renderImageFromDB() throws Exception {
-
-        //given
         RecipeCommand command = new RecipeCommand();
         command.setId(1L);
 
@@ -93,7 +89,6 @@ public class ImageControllerTest {
 
         when(recipeService.findCommandById(anyLong())).thenReturn(command);
 
-        //when
         MockHttpServletResponse response = mockMvc.perform(get("/recipe/1/recipeimage"))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -105,7 +100,6 @@ public class ImageControllerTest {
 
     @Test
     public void testGetImageNumberFormatException() throws Exception {
-
         mockMvc.perform(get("/recipe/asdf/recipeimage"))
                 .andExpect(status().isBadRequest())
                 .andExpect(view().name("400error"));

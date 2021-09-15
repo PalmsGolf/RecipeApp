@@ -18,7 +18,6 @@ public class ImageServiceImpl implements ImageService {
         this.recipeRepository = recipeService;
     }
 
-    // як влн мпляться на  crud
     @Override
     @Transactional
     public void saveImageFile(Long recipeId, MultipartFile file) {
@@ -26,16 +25,15 @@ public class ImageServiceImpl implements ImageService {
             Recipe recipe = recipeRepository.findById(recipeId).get();
             Byte[] imageBlob = new Byte[file.getBytes().length];
 
-            int i = 0;
+            int blobIndex = 0;
             for (byte b : file.getBytes()){
-                imageBlob[i++] = b;
+                imageBlob[blobIndex++] = b;
             }
 
             recipe.setImage(imageBlob);
-
             recipeRepository.save(recipe);
         } catch (IOException ex) {
-            log.error("Error occurred.", ex);
+            log.error("Error occurred during reading image file.", ex);
         }
     }
 }

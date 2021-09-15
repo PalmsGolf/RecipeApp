@@ -20,7 +20,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class RecipeControllerTest {
-
     @Mock
     RecipeService recipeService;
 
@@ -38,7 +37,6 @@ public class RecipeControllerTest {
 
     @Test
     public void testGetRecipe() throws Exception {
-
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 

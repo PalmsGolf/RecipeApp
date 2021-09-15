@@ -26,10 +26,6 @@ public class IndexController {
         List<Recipe> recipesList = recipes.stream().collect(Collectors.toList());
         Collections.sort(recipesList, (o1, o2) -> o1.getId().compareTo(o2.getId()));
 
-        for(Recipe recipe : recipes) {
-            System.out.println(recipe.getId());
-        }
-
         model.addAttribute("recipes", recipesList);
         return "index";
     }
