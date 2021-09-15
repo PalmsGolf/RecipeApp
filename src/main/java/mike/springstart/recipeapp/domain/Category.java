@@ -2,12 +2,14 @@ package mike.springstart.recipeapp.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Category {
@@ -15,13 +17,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String description;
-
     @ManyToOne
     private Recipe recipe;
 
-    public Category() {
-    }
+    private String description;
 
     public Category(String description) {
         this.description = description;

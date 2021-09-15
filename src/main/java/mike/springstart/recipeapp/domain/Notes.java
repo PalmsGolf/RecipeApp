@@ -1,18 +1,15 @@
 package mike.springstart.recipeapp.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +19,4 @@ public class Notes {
 
     @Lob
     private String recipeNotes;
-
 }
